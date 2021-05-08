@@ -1,2 +1,2 @@
-# ValorCardinalPortugal_CSharp
-ValorCardinalPortugal_CSharp
+# VarlorExtenso_PT_PT
+Varlor Extenso PT PT
