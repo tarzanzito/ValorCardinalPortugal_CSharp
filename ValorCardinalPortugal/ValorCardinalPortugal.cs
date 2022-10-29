@@ -353,17 +353,18 @@ namespace Candal
 
                         resultado += " " + CARDINAL_GRUPOS_SINGULAR[nivel];
                     }
-                    else if (valor == CARDINAL_DOIS)
-                    {
-                        if (CARDINAL_GRUPOS_MASCULINO[nivel])
-                            resultado = CARDINAL_DOIS;
-                        else
-                            resultado = CARDINAL_DUAS;
-
-                        resultado += " " + CARDINAL_GRUPOS_PLURAL[nivel];
-                    }
                     else
-                        resultado = valor + " " + CARDINAL_GRUPOS_PLURAL[nivel];
+                        if (valor == CARDINAL_DOIS)
+                        {
+                            if (CARDINAL_GRUPOS_MASCULINO[nivel])
+                                resultado = CARDINAL_DOIS;
+                            else
+                                resultado = CARDINAL_DUAS;
+
+                            resultado += " " + CARDINAL_GRUPOS_PLURAL[nivel];
+                        }
+                        else
+                            resultado = valor + " " + CARDINAL_GRUPOS_PLURAL[nivel];
                     break;
             }
 
@@ -422,17 +423,19 @@ namespace Candal
             int pos = valor.IndexOf(".");
             if (pos == -1)
                 result += ".00";
-            else if (pos == 0)
-                result = "0" + result;
+            else
+                if (pos == 0)
+                    result = "0" + result;
 
             pos = result.IndexOf(".");
             int rlen = result.Length - pos;
             if (rlen == 1)
                 result += "00";
-            else if (rlen == 2)
-                result += "0";
             else
-                result = result.Substring(0, pos + 3);
+                if (rlen == 2)
+                    result += "0";
+                else
+                    result = result.Substring(0, pos + 3);
 
             return result.Trim();
         }
